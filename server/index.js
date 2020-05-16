@@ -20,6 +20,8 @@ app.post('/relay-project/change/:number/:status', (req,res,next) => {
 
   relayStatus[number - 1] = status === 'switch' ? !relayStatus[number -1] : status === 1 ? true : false;
 
+  console.log(`Relay Project: Change Number ${number} to ${relayStatus[number - 1]}`);
+
   return res.send({
     status: 'ok',
     data: relayStatus
