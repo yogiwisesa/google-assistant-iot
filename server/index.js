@@ -36,15 +36,28 @@ app.get('/relay-project/status', (req,res,next) => {
   })
 })
 
+const logTemp = [];
 app.get('/temperature-project/save', (req, res, next) => {
   console.log(`Temperature Project: `, req.query)
   const { humid, temp } = req.query;
 
   console.log(`Temperature Project: Humid: `, humid);
   console.log(`Temperature Project: Temp: `, temp);
+  logTemp.push({
+    dateTime: moment().format('YYYY-MMM-DD HH:mm:ss'),
+    temp,
+    humid
+  })
 
   res.send({
     status: 'ok'
+  })
+})
+
+app.get('/temperature-project/status', (req, res, next) => {
+  res.send({
+    status: 'ok',
+    data: logTemp.reverse()
   })
 })
 
