@@ -1,5 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+const moment = require('moment');
 
 require('dotenv').config();
 
@@ -32,6 +33,18 @@ app.get('/relay-project/status', (req,res,next) => {
   res.send({
     status: 'ok',
     data: relayStatus
+  })
+})
+
+app.get('/temperature-project/save', (req, res, next) => {
+  console.log(`Temperature Project: `, req.query)
+  const { humid, temp } = req.query;
+
+  console.log(`Temperature Project: Humid: `, humid);
+  console.log(`Temperature Project: Temp: `, temp);
+
+  res.send({
+    status: 'ok'
   })
 })
 
